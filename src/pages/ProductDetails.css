@@ -1,0 +1,269 @@
+.product-details-page {
+  padding-top: 44px;
+  background: #fff;
+}
+
+.product-hero {
+  width: 100%;
+  height: 55vh;
+  background: #f5f5f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.product-hero-image {
+  max-width: 65%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-info-section {
+  padding: 40px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 40px;
+  padding: 0 24px;
+}
+
+.product-main-info {
+  padding-top: 20px;
+}
+
+.product-main-info h1 {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.003em;
+  color: #1d1d1f;
+}
+
+.product-tagline {
+  font-size: 19px;
+  color: #86868b;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.product-price {
+  font-size: 24px;
+  color: #1d1d1f;
+  margin-bottom: 32px;
+}
+
+.product-options {
+  background: #f5f5f7;
+  padding: 24px;
+  border-radius: 18px;
+}
+
+.option-group {
+  margin-bottom: 24px;
+}
+
+.option-group:last-child {
+  margin-bottom: 32px;
+}
+
+.option-group h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1d1d1f;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.color-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.color-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #d2d2d7;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.color-option.selected {
+  border-color: #0071e3;
+  background: white;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.color-name {
+  font-size: 12px;
+  color: #1d1d1f;
+}
+
+.size-options,
+.storage-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+.option-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 12px;
+  border: 1px solid #d2d2d7;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.option-button.selected {
+  border-color: #0071e3;
+  background: white;
+}
+
+.option-name {
+  font-size: 14px;
+  color: #1d1d1f;
+}
+
+.option-price {
+  font-size: 12px;
+  color: #86868b;
+}
+
+.add-to-bag-button {
+  width: 100%;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 980px;
+  background: #0071e3;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-to-bag-button:hover {
+  background: #0077ed;
+}
+
+.add-to-bag-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease-out, height 0.6s ease-out;
+}
+
+.add-to-bag-button:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+}
+
+.product-features {
+  border-top: 1px solid #d2d2d7;
+  padding: 40px 24px;
+  text-align: center;
+  background: #f5f5f7;
+}
+
+.product-features h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #1d1d1f;
+}
+
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.features-list li {
+  font-size: 15px;
+  color: #1d1d1f;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+}
+
+@media (max-width: 834px) {
+  .product-hero {
+    height: 45vh;
+  }
+
+  .product-info-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .product-main-info h1 {
+    font-size: 32px;
+  }
+
+  .product-tagline {
+    font-size: 17px;
+  }
+
+  .product-hero-image {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 734px) {
+  .product-hero {
+    height: 40vh;
+  }
+  
+  .product-info-section {
+    padding: 24px 0;
+  }
+  
+  .product-info-grid {
+    padding: 0 16px;
+  }
+}
+
+.floating-product-image {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
