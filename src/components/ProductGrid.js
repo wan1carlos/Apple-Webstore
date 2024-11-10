@@ -11,8 +11,6 @@ const ProductGrid = ({ products }) => {
   const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  console.log('ProductGrid received products:', products);
-
   const handleAddToCart = (e, product) => {
     e.preventDefault();
     e.stopPropagation();
@@ -45,34 +43,8 @@ const ProductGrid = ({ products }) => {
       return;
     }
 
-    const animationEl = document.createElement('div');
-    animationEl.className = 'cart-animation';
-    document.body.appendChild(animationEl);
-
-    const productCard = document.querySelector(`[data-product-id="${productWithVariants.id}"]`);
-    const cartIcon = document.querySelector('.cart-icon');
-    
-    if (productCard && cartIcon) {
-      const start = productCard.getBoundingClientRect();
-      const end = cartIcon.getBoundingClientRect();
-
-      animationEl.style.top = `${start.top}px`;
-      animationEl.style.left = `${start.left}px`;
-
-      requestAnimationFrame(() => {
-        animationEl.style.top = `${end.top}px`;
-        animationEl.style.left = `${end.left}px`;
-        animationEl.style.opacity = '0';
-        animationEl.style.transform = 'scale(0.1)';
-      });
-
-      setTimeout(() => {
-        document.body.removeChild(animationEl);
-        addToCart(productWithVariants);
-      }, 500);
-    } else {
-      addToCart(productWithVariants);
-    }
+    addToCart(productWithVariants);
+    handleCloseModal();
   };
 
   if (!products || products.length === 0) {

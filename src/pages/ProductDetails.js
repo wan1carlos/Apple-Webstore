@@ -1,23 +1,38 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useProducts } from '../context/ProductContext';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import './ProductDetails.css';
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { products, loading } = useProducts();
   const { addToCart } = useCart();
+  const { user } = useAuth();
   
   // Find product by ID from Firestore products
   const product = products.find(p => p.id === id);
   
   const [selectedVariants, setSelectedVariants] = useState({
-    color: product?.variants?.colors?.[0] || null,
-    size: product?.variants?.sizes?.[0] || null,
-    storage: product?.variants?.storage?.[0] || null,
-    memory: product?.variants?.memory?.[0] || null
+    color: null,
+    size: null,
+    storage: null,
+    memory: null
   });
+
+  // Update selected variants when product changes
+  useEffect(() => {
+    if (product) {
+      setSelectedVariants({
+        color: product.variants?.colors?.[0] || null,
+        size: product.variants?.sizes?.[0] || null,
+        storage: product.variants?.storage?.[0] || null,
+        memory: product.variants?.memory?.[0] || null
+      });
+    }
+  }, [product]);
 
   const calculateTotalPrice = () => {
     if (!product) return 0;
@@ -38,6 +53,16 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = () => {
+    if (!user) {
+      navigate('/login', { 
+        state: { 
+          from: window.location.pathname,
+          message: 'Please log in to add items to your cart'
+        }
+      });
+      return;
+    }
+
     // Create animation element
     const animationEl = document.createElement('div');
     animationEl.className = 'add-to-cart-animation';

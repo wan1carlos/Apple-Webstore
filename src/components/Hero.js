@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
+import { useProducts } from '../context/ProductContext';
 import './Hero.css';
 
 const Hero = () => {
-  // Find the iPhone 15 Pro product
-  const iphone15Pro = products.find(p => p.name === "iPhone 15 Pro");
-  const productId = iphone15Pro ? iphone15Pro.id : 2; // Fallback to ID 2 if not found
+  const { products } = useProducts();
+  
+  // Find the iPhone 15 Pro product from the database
+  const iphone15Pro = products.find(p => 
+    p.name.toLowerCase().includes('iphone 15 pro') || 
+    p.name.toLowerCase().includes('iphone15pro')
+  );
 
   return (
     <section className="hero">
@@ -16,12 +20,25 @@ const Hero = () => {
         <div className="hero-cta">
           <p className="hero-price">From $999</p>
           <div className="hero-buttons">
-            <Link to={`/product/${productId}`} className="hero-button primary">
-              Buy
-            </Link>
-            <Link to={`/product/${productId}`} className="hero-button secondary">
-              Learn more <span className="arrow">→</span>
-            </Link>
+            {iphone15Pro ? (
+              <>
+                <Link to={`/product/${iphone15Pro.id}`} className="hero-button primary">
+                  Buy
+                </Link>
+                <Link to={`/product/${iphone15Pro.id}`} className="hero-button secondary">
+                  Learn more <span className="arrow">→</span>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/iphone" className="hero-button primary">
+                  Buy
+                </Link>
+                <Link to="/iphone" className="hero-button secondary">
+                  Learn more <span className="arrow">→</span>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
