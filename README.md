@@ -1,10 +1,6 @@
 
 ## 👥 Admin Access
 
-Default admin credentials:
-- Email: admin@gmail.com
-- Password: admin123
-
 ## 🔒 Security Features
 
 - Protected admin routes
